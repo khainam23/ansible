@@ -1,0 +1,10 @@
+- name: Test parallel execution
+  hosts: servers
+  gather_facts: false
+
+  tasks:
+    - name: Wait
+      ansible.builtin.shell: sleep 5
+
+    - name: Show hostname
+      ansible.builtin.command: hostname

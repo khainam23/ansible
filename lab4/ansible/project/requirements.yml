@@ -1,0 +1,3 @@
+collections:
+  - name: /mnt/c/Users/PC/Desktop/ansible/lab4/ansible/collections/company-infra-1.0.0.tar.gz
+    type: file

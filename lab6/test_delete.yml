@@ -3,12 +3,31 @@
   become: true # Bật sudo
 
   tasks:
-    - name: Delete File
-      ansible.builtin.file:
-        state: absent
-        path: /home/test/test.txt
+    # - name: Delete File
+    #   ansible.builtin.file:
+    #     path: /home/test/test.txt
+    #   ignore_errors: true
 
-    - name: Delete Folder
-      ansible.builtin.file:
-        state: absent
-        path: /home/test
+    # # - name: Delete Folder
+    # #   ansible.builtin.file:
+    # #     state: absent
+    # #     path: /home/test
+
+    # - name: Test
+    #   ansible.builtin.debug:
+    #     msg: "File deleted successfully"
+
+    - block:
+        - name: Test
+          ansible.builtin.debug:
+            msg: "Attempting to delete file"
+
+      rescue:
+        - name: Handle file deletion error
+          ansible.builtin.debug:
+            msg: "File deletion failed. The file may not exist."
+
+      always:
+        - name: Test
+          ansible.builtin.debug:
+            msg: "File deletion task completed"

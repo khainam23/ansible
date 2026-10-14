@@ -1,0 +1,19 @@
+- name: Edit file
+  hosts: servers
+  become: true # Bật sudo
+
+  tasks:
+    - name: Create folder
+      ansible.builtin.file: 
+        state: directory
+        path: /home/test
+
+    - name: Create file
+      ansible.builtin.file:
+        state: touch
+        path: /home/test/test.txt
+
+    - name: Edit some file
+      ansible.builtin.lineinfile:
+        path: /home/test/test.txt
+        line: "This is a new line"

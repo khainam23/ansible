@@ -1,0 +1,14 @@
+- name: Edit file
+  hosts: servers
+  become: true # Bật sudo
+
+  tasks:
+    - name: Delete File
+      ansible.builtin.file:
+        state: absent
+        path: /home/test/test.txt
+
+    - name: Delete Folder
+      ansible.builtin.file:
+        state: absent
+        path: /home/test
